@@ -6,6 +6,7 @@ import 'package:paintroid/core/providers/state/toolbox_state_provider.dart';
 import 'package:paintroid/ui/pages/workspace_page/components/bottom_bar/tool_options/shapes_tool_options.dart';
 import 'package:paintroid/ui/pages/workspace_page/components/bottom_bar/tool_options/spray_tool_options.dart';
 import 'package:paintroid/ui/pages/workspace_page/components/bottom_bar/tool_options/stroke_tool_options.dart';
+import 'package:paintroid/ui/pages/workspace_page/components/bottom_bar/tool_options/text_tool_options.dart';
 import 'package:paintroid/ui/pages/workspace_page/components/bottom_bar/tool_options/tool_option.dart';
 
 class ToolOptions extends ConsumerWidget {
@@ -22,16 +23,20 @@ class ToolOptions extends ConsumerWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: currentToolType == ToolType.SHAPES
+          ? EdgeInsets.zero
+          : const EdgeInsets.all(8),
       child: ToolOption(
         isIgnoring: !visible,
         opacity: visible ? maxOpacity : minOpacity,
         child: switch (currentToolType) {
           ToolType.BRUSH => const StrokeToolOptions(),
+          ToolType.WATERCOLOR => const StrokeToolOptions(),
           ToolType.ERASER => const StrokeToolOptions(),
           ToolType.LINE => const StrokeToolOptions(),
           ToolType.SHAPES => const ShapesToolOptions(),
           ToolType.SPRAY => const SprayToolOptions(),
+          ToolType.TEXT => const TextToolOptions(),
           _ => Container(),
         },
       ),

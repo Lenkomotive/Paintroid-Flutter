@@ -8,6 +8,8 @@ import 'package:paintroid/core/providers/object/tools/eraser_tool_provider.dart'
 import 'package:paintroid/core/providers/object/tools/hand_tool_provider.dart';
 import 'package:paintroid/core/providers/object/tools/line_tool_provider.dart';
 import 'package:paintroid/core/providers/object/tools/shapes_tool_provider.dart';
+import 'package:paintroid/core/providers/object/tools/text_tool_provider.dart';
+import 'package:paintroid/core/providers/object/tools/watercolor_tool_provider.dart';
 import 'package:paintroid/core/providers/state/paint_provider.dart';
 import 'package:paintroid/core/providers/state/spray_tool_provider.dart';
 import 'package:paintroid/core/providers/state/toolbox_state_data.dart';
@@ -58,6 +60,9 @@ class ToolBoxStateProvider extends _$ToolBoxStateProvider {
       case ToolType.BRUSH:
         state = state.copyWith(currentTool: ref.read(brushToolProvider));
         break;
+      case ToolType.WATERCOLOR:
+        state = state.copyWith(currentTool: ref.read(watercolorToolProvider));
+        break;
       case ToolType.HAND:
         state = state.copyWith(currentTool: ref.read(handToolProvider));
         break;
@@ -70,6 +75,9 @@ class ToolBoxStateProvider extends _$ToolBoxStateProvider {
       case ToolType.SHAPES:
         state = state.copyWith(currentTool: ref.read(shapesToolProvider));
         ref.read(canvasPainterProvider.notifier).repaint();
+        break;
+      case ToolType.TEXT:
+        state = state.copyWith(currentTool: ref.read(textToolProvider));
         break;
       case ToolType.SPRAY:
         state = state.copyWith(currentTool: ref.read(sprayToolProvider));
